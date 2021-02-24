@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import no.hvl.dat110.common.TODO;
+import no.hvl.dat110.messages.Message;
 import no.hvl.dat110.common.Logger;
 import no.hvl.dat110.messagetransport.Connection;
 
@@ -51,49 +52,50 @@ public class Storage {
 	}
 
 	public void addClientSession(String user, Connection connection) {
-
-		// TODO: add corresponding client session to the storage
+		ClientSession CSess = new ClientSession(user, connection);
 		
-		throw new UnsupportedOperationException(TODO.method());
+		if(!clients.containsKey(user)) {
+			clients.put(user, CSess);
+		}
 		
 	}
 
 	public void removeClientSession(String user) {
-
-		// TODO: remove client session for user from the storage
-
-		throw new UnsupportedOperationException(TODO.method());
+		ClientSession Csess = clients.get(user);
+			clients.remove(user, Csess);
 		
 	}
 
 	public void createTopic(String topic) {
+		
+		Set<String> SetmedString = ConcurrentHashMap.newKeySet();
+		subscriptions.put(topic, SetmedString);
+		}
 
-		// TODO: create topic in the storage
-
-		throw new UnsupportedOperationException(TODO.method());
-	
-	}
 
 	public void deleteTopic(String topic) {
-
-		// TODO: delete topic from the storage
-
-		throw new UnsupportedOperationException(TODO.method());
+		
+		subscriptions.remove(topic);
 		
 	}
 
 	public void addSubscriber(String user, String topic) {
-
-		// TODO: add the user as subscriber to the topic
 		
-		throw new UnsupportedOperationException(TODO.method());
+		if(subscriptions.contains(topic)) {
+			Set<String> set = getSubscribers(topic);
+			set.add(user);
+			subscriptions.replace(topic, set);
+		}
 		
 	}
 
 	public void removeSubscriber(String user, String topic) {
-
-		// TODO: remove the user as subscriber to the topic
-
-		throw new UnsupportedOperationException(TODO.method());
+		if(subscriptions.contains(topic)) {
+			Set<String> set = getSubscribers(topic);
+			if (set.contains(user)) {
+				set.remove(user);
+			}
+			subscriptions.replace(topic, set);
+		}
 	}
 }
