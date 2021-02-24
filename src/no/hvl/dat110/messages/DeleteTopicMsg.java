@@ -11,8 +11,13 @@ public class DeleteTopicMsg extends Message {
         this.topic = topic;
     }
 
-    public String getTopic() { return topic; }
-    public void setTopic(String topic) { this.topic = topic; }
+    public String getTopicforDeleting() { 
+    	return topic; 
+    }
+    
+    public void setTopicforDeleting(String topic) { 
+    	this.topic = topic; 
+    }
 
     @Override
     public String toString() { return "DeleteTopicMsg [topic=" + topic + "]"; }
