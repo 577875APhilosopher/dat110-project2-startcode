@@ -32,3 +32,4 @@ public class PublishMsg extends Message {
 		return "PublishMsg [topic=" +topic+", message="+message+"]";
 	}
 }
+
