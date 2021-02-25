@@ -174,9 +174,13 @@ public class Dispatcher extends Stopable {
 		// topic and message is contained in the subscribe message
 		// messages must be sent used the corresponding client session objects
 		Collection<ClientSession> clients = storage.getSessions();
-		
+
 		try {
-			
+			storage.getSubscribers(msg.getTopic())
+					.stream()
+					.filter(u -> storage.getSession(u) != null)
+					.forEach(u -> storage.getSession(u).send(msg));
+
 		} catch (NullPointerException e) {
 			e.printStackTrace();
             Logger.log("Error");
