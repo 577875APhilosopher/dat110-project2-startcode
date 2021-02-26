@@ -23,6 +23,6 @@ public class UnsubscribeMsg extends Message {
 	
 	@Override
 	public String toString() {
-		return super.toString() + " unsubscribe to: " + this.unsubscribeTo;
+		return super.toString();
 	}
 }

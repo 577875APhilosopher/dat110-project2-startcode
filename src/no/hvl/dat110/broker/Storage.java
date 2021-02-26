@@ -70,7 +70,8 @@ public class Storage {
 		
 		Set<String> SetmedString = ConcurrentHashMap.newKeySet();
 		subscriptions.put(topic, SetmedString);
-		}
+		
+	}
 
 
 	public void deleteTopic(String topic) {
@@ -81,21 +82,12 @@ public class Storage {
 
 	public void addSubscriber(String user, String topic) {
 		
-		if(subscriptions.contains(topic)) {
-			Set<String> set = getSubscribers(topic);
-			set.add(user);
-			subscriptions.replace(topic, set);
-		}
+		subscriptions.get(topic).add(user);
 		
 	}
 
 	public void removeSubscriber(String user, String topic) {
-		if(subscriptions.contains(topic)) {
-			Set<String> set = getSubscribers(topic);
-			if (set.contains(user)) {
-				set.remove(user);
-			}
-			subscriptions.replace(topic, set);
-		}
+		
+		subscriptions.get(topic).remove(user);
 	}
 }

@@ -23,6 +23,6 @@ public class SubscribeMsg extends Message {
 	
 	@Override
 	public String toString() {
-		return super.toString() + " subscribe to: " + this.subscribeTo;
+		return super.toString();
 	}
 }
