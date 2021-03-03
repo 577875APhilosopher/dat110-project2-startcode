@@ -26,9 +26,16 @@ public class DisplayDevice {
 		
 		// TODO - END
 		
+		Client client = new Client("DisplayDevice", Common.BROKERHOST, Common.BROKERPORT);
+		client.connect();
+		client.createTopic(Common.TEMPTOPIC);
+		client.subscribe(Common.TEMPTOPIC);
+		for (int i =0; i< COUNT; i++) {
+			PublishMsg pubMsg=  (PublishMsg) client.receive();
+			System.out.println("Temperature from Broker: "+ pubMsg.getMessage());
+		}
+		client.disconnect();
 		System.out.println("Display stopping ... ");
-		
-		throw new UnsupportedOperationException(TODO.method());
 		
 	}
 }
