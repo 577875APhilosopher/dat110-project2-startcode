@@ -21,10 +21,22 @@ public class TemperatureDevice {
 		// - disconnect from the broker
 
 		// TODO - end
+		Client client = new Client("TemperatureDevice", Common.BROKERHOST, Common.BROKERPORT);
+		client.connect();
+		for (int i = 0; i < COUNT; i++) {
+			int temperatur = sn.read();
+			client.publish(Common.TEMPTOPIC, Integer.toString(temperatur));
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		client.disconnect();
 
 		System.out.println("Temperature device stopping ... ");
-
-		throw new UnsupportedOperationException(TODO.method());
 
 	}
 }
