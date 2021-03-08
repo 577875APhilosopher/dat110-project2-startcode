@@ -31,7 +31,7 @@ public class DisplayDevice {
 		client.createTopic(Common.TEMPTOPIC);
 		client.subscribe(Common.TEMPTOPIC);
 		for (int i =0; i< COUNT; i++) {
-			PublishMsg pubMsg=  (PublishMsg) client.receive();
+			PublishMsg pubMsg = (PublishMsg) client.receive();
 			System.out.println("Temperature from Broker: "+ pubMsg.getMessage());
 		}
 		client.disconnect();
