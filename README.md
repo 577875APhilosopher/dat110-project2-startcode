@@ -1,5 +1,15 @@
 ## DAT110 - Project 2: Publish-subscribe messaging middleware
 
+### Demo - Proof of concept
+
+![](assets/demo/clienter.png)
+![](assets/demo/client1.png)
+![](assets/demo/client2.png)
+![](assets/demo/brokerlogg.png)
+
+
+
+
 ### Organisation
 
 The project work is to be undertaken in **groups of 2-4 students** - preferably the same groups as for project 1.
